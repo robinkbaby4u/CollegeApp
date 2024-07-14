@@ -1,0 +1,124 @@
+<h3>Student Records</h3>
+
+<ag-grid-angular
+    style="width: 90%; height:300px"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowData]="apiResponse"
+    [rowSelection]="'multiple'"
+    [animateRows]="true"
+    [pagination]="true"
+  ></ag-grid-angular>
+
+
+<!-- <ag-grid-angular
+class="ag-theme-alpine" (gridReady)="onGridReady($event)"
+[rowData]="apiResponse"
+[columnDefs]="columnDefs"
+></ag-grid-angular> -->
+
+<div class="add-btn-container">
+    <button class="add-btn-container__action-button btn btn-success" (click)="open(studentsForm)"> Add Students</button>
+    <button class="add-btn-container__action-button btn btn-light" [disabled]="!checkIfSelected()" (click)="onOpenViewForm(studentsForm)">View Students</button>
+    <button class="add-btn-container__action-button btn btn-danger" [disabled]="!checkIfSelected()" (click)="onDeletedRecord(studentsForm)">Delete Students</button>
+    <button class="add-btn-container__action-button btn btn-info" [disabled]="!checkIfSelected()"(click)="clearSelection()">Clear Selection</button>
+</div>
+
+<div>
+    <!-- Number of records to display : {{studentsRecordsCount()}} : {{studentsWarning()}} -->
+</div>
+<div class="student-entry">
+    <ng-template #studentsForm let-modal>
+        <form class="student-entry-form">
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control" id="inputName" [formControl]="nameControl" placeholder="First Name">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputCountry">Country</label>
+                    <input type="text" class="form-control" id="inputCountry" [formControl]="countryControl" placeholder="Country">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputState">State</label>
+                    <input type="text" class="form-control" id="inputState" [formControl]="stateControl" placeholder="First Name">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputPassportDeclaration">Name</label>
+                    <input type="text" class="form-control" id="inputPassportDeclaration" [formControl]="passportDeclarationControl" placeholder="Passport Declaration">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputFitnessDeclaration">Fitness Declaration</label>
+                    <input type="text" class="form-control" id="inputFitnessDeclaration" [formControl]="fitnessDeclarationControl" placeholder="Fitness Declaration">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputCourse">Course</label>
+                    <input type="text" class="form-control" id="inputCourse" [formControl]="countryControl" placeholder="Course">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputSubject">Subject</label>
+                    <input type="text" class="form-control" id="inputSubject" [formControl]="subjectControl" placeholder="Subject">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputDate">Date</label>
+                    <input type="datetime-local" class="form-control" id="inputDate" [formControl]="dateControl" placeholder="Date">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputCity">City</label>
+                    <input  class="form-control" id="inputCity" 
+                    [formControl]="cityControl" placeholder="City" 
+                    type="text">
+                </span>
+            </div>
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputStreet">Street</label>
+                    <input type="text" class="form-control" id="inputStreet" [formControl]="streetControl" placeholder="Street">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputAddress2">Address2</label>
+                    <input type="text" class="form-control" id="inputAddress2" [formControl]="address2Control" placeholder="Address 2">
+                </span>
+            </div>   
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" [formControl]="zipControl" placeholder="Zip">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="text" class="form-control" id="inputEmail" [formControl]="emailControl" placeholder="E Mail">
+                </span>
+            </div> 
+             <div class="student-entry-form__form-row--input-section">
+                <span class="form-group">
+                    <label for="inputName">Web Site</label>
+                    <input type="text" class="form-control" id="inputWebSite" [formControl]="websiteControl" placeholder="Web Site">
+                </span>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="modal.close() " [disabled]="studentDetailsForm.status==='INVALID'">Submit</button>
+            </div>  
+        </form>
+    </ng-template>

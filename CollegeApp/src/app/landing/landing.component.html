@@ -1,0 +1,47 @@
+<div class="students-record" [ngClass]="{'sidebarExpanded':sidebarExpanded}">
+    <form>
+      <div class="mb-3 row">
+        <label> Search </label>
+        <div class="col-xs-3 col-sm-auto">
+          <input class="form-control" type="text" [formControl]="filter" >
+        </div>
+      </div>
+    </form>
+    <table class="table table-striped record-table">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Physics</th>
+        <th>Chemistry</th>
+        <th>Maths</th>
+        <th>Computer</th>
+      </thead>
+      <tbody>
+        @for (student of students; track student.name; let i= $index){
+        <tr>
+          <td>{{i+1}}</td>
+          <td>
+            <img
+            [src]=student.studentImage 
+            class="me-2"
+            style="width: 20px;"/>
+  
+            <ngb-highlight [result]="student.name" [term]="filter.value"></ngb-highlight>
+            <!-- {{student.name}} -->
+          </td>
+          <td>{{student.country}}</td>
+          <td>{{student.physics}}</td>
+          <td>{{student.chemistry}}</td>
+          <td>{{student.maths}}</td>
+          <td>{{student.computer}}</td>
+        </tr>
+      }
+      @empty {
+        <tr>
+          <p>No records found!</p>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
