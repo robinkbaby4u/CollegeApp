@@ -4,6 +4,7 @@ import { StudentRecordsComponent } from './student-records/student-records.compo
 import { StudentsComponent } from './students/students.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
+import { StateManagementComponent } from './state-management/state-management.component';
 
 export const routes: Routes = [  
     {
@@ -24,5 +25,10 @@ export const routes: Routes = [
     {
         path:'login',
         component:LoginComponent
+    }
+    ,
+    {
+        path:'state-management',
+        component:StateManagementComponent
     }
 ];

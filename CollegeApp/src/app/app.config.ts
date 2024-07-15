@@ -3,9 +3,9 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { AuthService } from './auth/auth.service';
+import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
-  AuthService
-  ]
+    AuthService, provideStore()]
 };
